@@ -1,0 +1,32 @@
+{
+  "name": "greenline-performance",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node server/index.js",
+    "build:client": "vite build --config vite.config.client.js",
+    "build:server": "vite build --config vite.config.server.js",
+    "build": "npm run build:client && npm run build:server",
+    "serve:ssr": "node server/index.js",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@oku-ui/motion": "^0.4.3",
+    "@tailwindcss/vite": "^4.1.16",
+    "@vue/server-renderer": "^3.5.13",
+    "axios": "^1.9.0",
+    "compression": "^1.8.0",
+    "express": "^5.1.0",
+    "lucide-vue-next": "^0.552.0",
+    "vue": "^3.5.22",
+    "vue-meta": "^2.4.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^6.0.1",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^4.1.16",
+    "vite": "^7.2.0"
+  }
+}

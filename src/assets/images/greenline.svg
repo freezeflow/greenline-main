@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 63 63">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#linear-gradient-2);
+      }
+
+      .cls-2 {
+        fill: #fff;
+      }
+
+      .cls-3 {
+        fill: #27c900;
+        font-family: MyriadPro-Regular, 'Myriad Pro';
+        font-size: 29.35px;
+      }
+
+      .cls-4 {
+        fill: url(#linear-gradient-3);
+      }
+
+      .cls-5 {
+        fill: url(#linear-gradient);
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="31.3" y1="31.23" x2="31.3" y2="33.11" gradientUnits="userSpaceOnUse">
+      <stop offset=".52" stop-color="#fff"/>
+      <stop offset=".54" stop-color="#27c900"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" y1="36.51" y2="38.39" xlink:href="#linear-gradient"/>
+    <linearGradient id="linear-gradient-3" x1="31.3" y1="25.95" x2="31.3" y2="27.83" xlink:href="#linear-gradient"/>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <circle class="cls-2" cx="31.5" cy="31.5" r="31.5"/>
+    <text class="cls-3" transform="translate(19.51 41.53)"><tspan x="0" y="0">G</tspan></text>
+    <rect class="cls-5" x="8.8" y="31.11" width="45" height="2.15"/>
+    <rect class="cls-1" x="8.8" y="36.39" width="45" height="2.15"/>
+    <rect class="cls-4" x="8.8" y="25.83" width="45" height="2.15"/>
+  </g>
+</svg>
