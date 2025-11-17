@@ -26,11 +26,11 @@
 </template>
 
 <script setup>
-    import navbar from './components/navbar.vue';
-    import Home from './views/Home.vue';
-    import Calculator from './views/Calculator.vue';
-    import Info from './views/Info.vue';
-    import DocsInfo from './views/DocsInfo.vue';
-    import Application from './views/Application.vue';
-    import Footer from './views/Footer.vue';
+  import navbar from './components/navbar.vue';
+  import Home from './views/Home.vue';
+  import Calculator from './views/Calculator.vue';
+  import Info from './views/Info.vue';
+  import DocsInfo from './views/DocsInfo.vue';
+  import Application from './views/Application.vue';
+  import Footer from './views/Footer.vue';
 </script>

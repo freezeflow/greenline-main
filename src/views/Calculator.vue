@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, onMounted, watch } from 'vue'
+import { ref, computed, onMounted, watch, onUnmounted } from 'vue'
 import { Motion } from '@oku-ui/motion'
 
 // State
@@ -50,6 +50,8 @@ watch([loanAmount, loanTerm], () => {
   if (existing) existing.remove()
   appendJSONLD()
 })
+
+
 </script>
 
 <template>
@@ -77,7 +79,7 @@ watch([loanAmount, loanTerm], () => {
     <form class="flex flex-col gap-6" aria-label="Loan calculator form">
       <!-- Loan Amount Slider -->
       <fieldset>
-        <legend class="text-lg font-semibold mb-2">Loan Amount</legend>
+        <legend class="text-lg font-semibold mb-2">Loan Amount: {{ loanAmount }} </legend>
         <div class="flex flex-col gap-2">
           <input
             type="range"
