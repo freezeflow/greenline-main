@@ -31,7 +31,7 @@ onMounted(() => {
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "Greenline Financials",
-    "url": "https://yourwebsite.com",
+    "url": "https://greenline-ubvx.onrender.com",
     "contactPoint": [
       {
         "@type": "ContactPoint",

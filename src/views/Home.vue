@@ -1,6 +1,6 @@
 <script setup>
   import { Motion } from '@oku-ui/motion';
-  import { onMounted, onUnmounted, ref, computed } from 'vue'
+  import { onMounted } from 'vue'
   import { FileCheck, Banknote, CheckCircle, Stamp } from 'lucide-vue-next';
 
   onMounted(() => {
@@ -11,27 +11,12 @@
       "@type": "FinancialService",
       "name": "Greenline Fiancials",
       "description": "Fast, simple, reliable loans up to N$5000 with 48-hour approval.",
-      "url": "https://yourwebsite.com",
+      "url": "https://greenline-ubvx.onrender.com",
       "areaServed": "NA",
-      "logo": "https://yourwebsite.com/logo.png"
+      "logo": "https://greenline-ubvx.onrender.com/green.png"
     })
     document.head.appendChild(script)
   })
-
-  const lastScroll = ref(0)
-  const currentScroll = ref(0)
-  const scrollingDown = ref(false)
-
-  const handleScroll = () => {
-    currentScroll.value = window.scrollY
-
-    scrollingDown.value = currentScroll.value < lastScroll.value
-
-    lastScroll.value = currentScroll.value <= 0 ? 0 : currentScroll.value
-  }
-
-  onMounted(() =>{document.addEventListener('scroll', handleScroll)})
-  onUnmounted(() =>{document.removeEventListener('scroll', handleScroll)})
 </script>
 
 <template>
@@ -81,9 +66,9 @@
       
       <Banknote class="text-accent absolute translate-x-32 translate-y-20 lg:translate-x-40" />
       <img
-        src="../assets/images/goldImg1.jpg"
+        src="/hero.png"
         alt="Smiling person getting approved for a quick loan"
-        class="min-w-48 max-w-full h-auto rounded-lg "
+        class="min-w-64 h-auto"
       />
     </Motion>
     

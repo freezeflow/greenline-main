@@ -51,7 +51,7 @@ onMounted(() => {
     "provider": {
       "@type": "Organization",
       "name": "Greenline Financials",
-      "url": "https://yourwebsite.com"
+      "url": "https://greenline-ubvx.onrender.com"
     },
     "offers": {
       "@type": "Offer",

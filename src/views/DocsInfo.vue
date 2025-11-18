@@ -39,7 +39,7 @@ onMounted(() => {
       "@type": "FinancialService",
       "name": "Greenline Financials",
       "areaServed": "Namibia",
-      "url": "https://yourwebsite.com"
+      "url": "https://greenline-ubvx.onrender.com"
     },
     "description": "Required documents for applying for a Greenline microloan, including ID copy, payslip, and bank statements."
   });

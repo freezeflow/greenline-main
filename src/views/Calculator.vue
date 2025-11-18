@@ -28,8 +28,8 @@ const appendJSONLD = () => {
     "provider": {
       "@type": "Organization",
       "name": "Greenline Financials",
-      "url": "https://yourwebsite.com",
-      "logo": "https://yourwebsite.com/logo.png"
+      "url": "https://greenline-ubvx.onrender.com",
+      "logo": "https://greenline-ubvx.onrender.com/green.png"
     },
     "offers": {
       "@type": "Offer",

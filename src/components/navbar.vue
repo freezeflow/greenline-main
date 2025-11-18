@@ -20,31 +20,31 @@ onMounted(() => {
         "@type": "SiteNavigationElement",
         "position": 1,
         "name": "Home",
-        "url": "https://yourwebsite.com/#home"
+        "url": "https://greenline-ubvx.onrender.com/#home"
       },
       {
         "@type": "SiteNavigationElement",
         "position": 2,
         "name": "Calculator",
-        "url": "https://yourwebsite.com/#calculator"
+        "url": "https://greenline-ubvx.onrender.com/#calculator"
       },
       {
         "@type": "SiteNavigationElement",
         "position": 3,
         "name": "Info",
-        "url": "https://yourwebsite.com/#info"
+        "url": "https://greenline-ubvx.onrender.com/#info"
       },
       {
         "@type": "SiteNavigationElement",
         "position": 4,
         "name": "Apply",
-        "url": "https://yourwebsite.com/#apply"
+        "url": "https://greenline-ubvx.onrender.com/#apply"
       },
       {
         "@type": "SiteNavigationElement",
         "position": 5,
         "name": "Contact",
-        "url": "https://yourwebsite.com/#footer"
+        "url": "https://greenline-ubvx.onrender.com/#footer"
       }
     ]
   })
@@ -59,7 +59,7 @@ onMounted(() => {
     aria-label="Primary navigation"
   >
     <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
-      <h1 class="font-heading text-xl" aria-label="Greenline Financials logo">logo</h1>
+      <img src="/green.svg" class="w-[10%]" alt="Greenline Financials logo" aria-label="Greenline Microloans logo" />
       <ul class="flex gap-6">
         <li><a href="#home" class="flex flex-row gap-1">Home</a></li>
         <li><a href="#calculator" class="flex flex-row gap-1">Calculator</a></li>
@@ -75,7 +75,7 @@ onMounted(() => {
     class="max-sm:px-[20px] max-md:px-[64px] md:hidden fixed top-0 left-0 w-full py-3 bg-white text-primary shadow z-50"
   >
     <div class="w-full flex flex-row justify-between items-center">
-      <h1 class="font-heading text-xl" aria-label="Greenline Microloans logo">logo</h1>
+      <img src="/green.svg" class="w-[15%]" alt="Greenline Financials logo" aria-label="Greenline Microloans logo" />
 
       <!-- Hamburger -->
       <button
