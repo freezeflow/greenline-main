@@ -6,7 +6,7 @@
       <Home />
     </section>
 
-    <section id="calculator" class="max-sm:px-[20px] max-md:px-[64px] px-[120px] py-10 bg-gray-100">
+    <section id="calculator" class="max-sm:px-[20px] max-md:px-[64px] px-[120px] py-10">
       <Calculator />
     </section>
 

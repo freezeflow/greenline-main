@@ -17,10 +17,14 @@
     "@vue/server-renderer": "^3.5.13",
     "axios": "^1.9.0",
     "compression": "^1.8.0",
+    "dotenv": "^17.2.3",
     "express": "^5.1.0",
+    "express-rate-limit": "^8.2.1",
     "lucide-vue-next": "^0.552.0",
+    "multer": "^2.0.2",
+    "nodemailer": "^7.0.10",
     "vue": "^3.5.22",
-    "vue-meta": "^2.4.0"
+    "vue-toastification": "^2.0.0-rc.5"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^6.0.1",

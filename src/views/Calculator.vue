@@ -79,7 +79,7 @@ watch([loanAmount, loanTerm], () => {
     <form class="flex flex-col gap-6" aria-label="Loan calculator form">
       <!-- Loan Amount Slider -->
       <fieldset>
-        <legend class="text-lg font-semibold mb-2">Loan Amount: {{ loanAmount }} </legend>
+        <legend class="text-lg font-semibold mb-2">Loan Amount: N${{ loanAmount }} </legend>
         <div class="flex flex-col gap-2">
           <input
             type="range"

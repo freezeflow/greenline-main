@@ -7,6 +7,8 @@ import fs from 'fs'
 import { createServer as createViteServer } from 'vite'
 import { renderToString } from '@vue/server-renderer'
 
+import applicationRouter from './routes/application.router.js'
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const isProd = process.env.NODE_ENV === 'production'
 
@@ -20,7 +22,12 @@ async function startServer() {
       appType: 'custom',
     })
 
+    app.use(express.json());
+    app.use(express.urlencoded({ extended: true }));
+
     app.use(vite.middlewares)
+
+    app.use('/api', applicationRouter)
 
     app.use(/.*/, async (req, res) => {
       try {
@@ -58,6 +65,11 @@ async function startServer() {
     )
     const { createApp } = await import('../dist/server/main.server.js')
 
+    app.use(express.json());
+    app.use(express.urlencoded({ extended: true }));
+
+    app.use('/api', applicationRouter)
+
     app.use(/.*/, async (req, res) => {
       try {
         const { app: vueApp } = createApp()
@@ -76,9 +88,13 @@ async function startServer() {
     })
   }
 
+  app.use(express.json());
+
+  app.use('/api', applicationRouter)
+
   const port = process.env.PORT || 3000
   app.listen(port, () => {
-    console.log(`🚀 Server running at http://localhost:${port}`)
+    console.log(`Server running at http://localhost:${port}`)
   })
 }
 

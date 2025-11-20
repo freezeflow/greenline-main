@@ -1,7 +1,11 @@
 <script setup>
 import { reactive, ref, onMounted } from 'vue'
-import { Check } from 'lucide-vue-next'
+import { useToast } from "vue-toastification/dist/index.mjs"
+import { Check, Loader2 } from 'lucide-vue-next'
 import { Motion } from '@oku-ui/motion'
+import axios from 'axios'
+
+const toast = useToast();
 
 // Reactive form data
 const form = reactive({
@@ -17,6 +21,9 @@ const form = reactive({
   },
 })
 
+const uploadProgress = ref()
+const loading = ref(false)
+
 // Track uploaded file names
 const uploadedFiles = reactive({
   idCopy: '',
@@ -30,13 +37,78 @@ function handleFileUpload(e, key) {
   if (!file) return
 
   if (file.type !== 'application/pdf') {
-    alert('Only PDF files are allowed.')
+    toast.error('Only PDF files are allowed.')
     e.target.value = ''
     return
   }
 
   form.files[key] = file
   uploadedFiles[key] = file.name
+}
+
+const submitApplication = async () => {
+  const formEl = document.querySelector('form')
+
+  if (!formEl.checkValidity()) {
+    formEl.reportValidity()
+    return
+  }
+
+  loading.value = true
+
+  const formData = new FormData()
+  formData.append("fullName", form.name)
+  formData.append("email", form.email)
+  formData.append("phone", form.mobile)
+  formData.append("amount", form.amount)
+  formData.append("term", form.term)
+  formData.append("message", form.message || "")
+
+  for (const key of ["idCopy", "bankstatement", "payslip"]) {
+    if (form.files[key] instanceof File) {
+      formData.append(key, form.files[key])
+    }
+  }
+
+  try {
+    const response = await axios.post("/api/apply", formData, {
+      onUploadProgress: (progressEvent) => {
+        if (progressEvent.total) {
+          uploadProgress.value = Math.round((progressEvent.loaded * 100) / progressEvent.total)
+        }
+      }
+    })
+
+    if (response.data.success) {
+      toast.success("Application sent successfully!")
+      // reset form
+      form.name = ""
+      form.email = ""
+      form.mobile = ""
+      form.amount = ""
+      form.term = 1
+
+      form.files.idCopy = null
+      form.files.bankstatement = null
+      form.files.payslip = null
+
+      uploadedFiles.idCopy = ""
+      uploadedFiles.bankstatement = ""
+      uploadedFiles.payslip = ""
+      uploadProgress.value = 0
+
+      loading.value = false
+    } else {
+      toast.error("Error: " + response.data.error)
+      loading.value = false
+    }
+
+  } catch (err) {
+    toast.error("Network error or server issue.")
+    loading.value = false
+  } finally {
+    loading.value = false
+  }
 }
 
 // JSON-LD Microdata
@@ -83,7 +155,7 @@ onMounted(() => {
       action=""
       method="post"
       class="max-sm:w-full w-1/2 flex flex-col gap-4"
-      @submit.prevent="($event.target.checkValidity()) || $event.target.reportValidity()"
+      @submit.prevent="submitApplication"
       novalidate
     >
       <!-- Name -->
@@ -125,7 +197,7 @@ onMounted(() => {
           v-model="form.mobile"
           type="text"
           placeholder="081 / +26481 / 26481"
-          pattern="^(\+264|264|0)?81[-\s]?[0-9]{3}[-\s]?[0-9]{3}$"
+          pattern="^(\+264|264|0)?81[- ]?[0-9]{3}[- ]?[0-9]{3}$"
           required
           class="border border-primary p-2 rounded"
           @invalid="e => e.target.setCustomValidity('Enter a valid Namibian number starting with 081, +26481, or 26481 (e.g., 081234567).')"
@@ -199,6 +271,7 @@ onMounted(() => {
 
         <input
           :id="key"
+          :name="key"
           type="file"
           accept="application/pdf"
           required
@@ -212,10 +285,10 @@ onMounted(() => {
       <!-- Submit -->
       <button
         type="submit"
-        class="text-xl p-2 text-white rounded bg-accent cursor-pointer hover:bg-accent/95 transition-all"
+        class="flex flex-row items-center justify-center text-xl p-2 text-white rounded bg-accent cursor-pointer hover:bg-accent/95 transition-all"
         itemprop="potentialAction"
       >
-        Submit Application
+        <Loader2 :class="loading? 'animate-spin block':'hidden'" /> Submit Application
       </button>
     </form>
   </section>

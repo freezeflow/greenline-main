@@ -1,6 +1,8 @@
 <script setup>
-import { reactive, onMounted } from 'vue'
+import { reactive, onMounted, ref } from 'vue'
 import { MapPin, Phone, Mail } from 'lucide-vue-next'
+import { useToast } from "vue-toastification/dist/index.mjs";
+import axios from 'axios'
 
 // Reactive form object
 const contactForm = reactive({
@@ -8,21 +10,47 @@ const contactForm = reactive({
   body: ''
 })
 
+const uploadProgress = ref()
+const toast = useToast();
+
 // Handle form submission
-function handleSubmit(e) {
-  e.preventDefault()
-  const formEl = e.target
+async function handleSubmit(e) {
+  e.preventDefault();
+  const formEl = e.target;
+
   if (formEl.checkValidity()) {
-    console.log('Contact Form Data:', contactForm)
-    // reset form if needed
-    formEl.reset()
-    contactForm.email = ''
-    contactForm.body = ''
+
+    try {
+      const response = await axios.post(`/api/contact`, contactForm, {
+        onUploadProgress: (progressEvent) => {
+          if (progressEvent.total) {
+            uploadProgress.value = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+          }
+        }
+      });
+
+      if (response.data.success) {
+        toast.success("Message recieved, we will contact you as soon as possible")
+
+        contactForm.email = '';
+        contactForm.body = '';
+      } else {
+        toast.update(loadingToast, {
+          type: "error",
+          render: response.data.error || "Failed to send message.",
+          autoClose: 3000,
+        });
+      }
+
+    } catch (err) {
+      console.error(err);
+
+      toast.error("An error occured, please wait while our team checks it out")
+    }
   } else {
-    formEl.reportValidity()
+    formEl.reportValidity();
   }
 }
-
 
 onMounted(() => {
   const script = document.createElement('script')

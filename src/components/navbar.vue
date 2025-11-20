@@ -1,7 +1,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { Motion } from '@oku-ui/motion'
-import { Home, Calculator, Info, FileText, Contact } from 'lucide-vue-next'
+import { Home, Calculator, Info, FileText, Contact, CircleQuestionMark } from 'lucide-vue-next'
 
 const isOpen = ref(false)
 
@@ -59,10 +59,11 @@ onMounted(() => {
     aria-label="Primary navigation"
   >
     <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
-      <img src="/green.svg" class="w-[10%]" alt="Greenline Financials logo" aria-label="Greenline Microloans logo" />
+      <img src="/green.svg" class="w-[10%] max-lg:w-[15%]" alt="Greenline Financials logo" aria-label="Greenline Microloans logo" />
       <ul class="flex gap-6">
         <li><a href="#home" class="flex flex-row gap-1">Home</a></li>
         <li><a href="#calculator" class="flex flex-row gap-1">Calculator</a></li>
+        <li><a href="#whyUs" class="flex flex-row gap-1">Why us</a></li>
         <li><a href="#info" class="flex flex-row gap-1">Info</a></li>
         <li><a href="#apply" class="flex flex-row gap-1">Apply</a></li>
         <li><a href="#footer" class="flex flex-row gap-1">Contact</a></li>
@@ -75,7 +76,7 @@ onMounted(() => {
     class="max-sm:px-[20px] max-md:px-[64px] md:hidden fixed top-0 left-0 w-full py-3 bg-white text-primary shadow z-50"
   >
     <div class="w-full flex flex-row justify-between items-center">
-      <img src="/green.svg" class="w-[15%]" alt="Greenline Financials logo" aria-label="Greenline Microloans logo" />
+      <img src="/green.svg" class="w-[20%]" alt="Greenline Financials logo" aria-label="Greenline Microloans logo" />
 
       <!-- Hamburger -->
       <button
@@ -115,6 +116,9 @@ onMounted(() => {
         </li>
         <li @click="toggleMenu" class="mx-auto">
           <a href="#calculator" class="flex flex-row gap-1"><Calculator /> Calculator</a>
+        </li>
+        <li @click="toggleMenu" class="mx-auto">
+          <a href="#whyUs" class="flex flex-row gap-1"><CircleQuestionMark /> Why us</a>
         </li>
         <li @click="toggleMenu" class="mx-auto">
           <a href="#info" class="flex flex-row gap-1"><Info /> Info</a>

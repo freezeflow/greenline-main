@@ -9,228 +9,41 @@
   --font-display: "Manrope", sans-serif
 }
 
-.apply{
-  background-image: url(images/apply.png);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-}
-
-.info-background{
-  background-image: url(images/whyUs.png);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  top: 85vh;
-  z-index: -10;
-}
-
-.info{
-  background-color: rgba(0, 128, 0, 0.199);
-  backdrop-filter: opacity(10px);
-}
-
-.circle1{
-  animation: bounce 2s linear forwards infinite;
-}
-
-.circle2{
-  animation: bounce 2s linear 0.5s forwards infinite;
-}
-
-.circle3{
-  animation: bounce 2s linear 1s forwards infinite;
-}
-
-@keyframes bounce {
-  0%{
-    translate: 0rem 0rem;
-  }
-  30%{
-    translate: 0rem 3rem;
-  }
-  70%{
-    translate: 0rem -3rem;
-  }
-  100%{
-    translate: 0rem 0rem;
-  }
-}
-
-.home::before{
-  background-image: url(images/pexels-cytonn-955395.webp);
-  filter: blur(5px);
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-}
-
-.line{
-  background-color: rgb(0, 255, 0);
-  width: 80%;
-  height: 1px;
-}
-
-.h1-text{
-  padding: 3px;
-  backdrop-filter: blur(10px);
-}
-
-.homeNav{
-  background-image: linear-gradient(to top, rgba(0, 128, 0, 0.750), rgba(0, 128, 0, 0.650), rgba(0, 128, 0, 0.550), rgba(0, 128, 0, 0));
-}
-
-.form-container{
-  backdrop-filter: blur(8px);
-}
-
-.applyNow-btn{
-  top: 80vh;
-  left: 13vw;
-  box-shadow: -5px 10px 15px black;
-  overflow: hidden;
-}
-
-.applyNow-btn > button {
-  position: relative; /* Added this */
-  background-color: white;
-  color: rgb(0, 199, 0);
-  overflow: hidden;
-  text-decoration: none;
-  transition: 0.2s transform ease-in-out;
-  will-change: transform;
-  z-index: 0;
-}
-
-.applyNow-btn > button::after {
-  background-color: rgb(0, 199, 0);
+/* ---- Greenline Toast Theme ---- */
+.greenline-toast {
+  background: #154A3A !important; /* deep green */
+  border-left: 4px solid #BCA144 !important; /* gold accent */
+  color: #ffffff !important;
   border-radius: 8px;
-  content: '';
-  display: block;
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  left: 0;
-  top: 0;
-  transform: translate(-100%, 0) rotate(10deg);
-  transform-origin: top left;
-  transition: 0.2s transform ease-out;
-  will-change: transform;
-  z-index: -1;
+  padding: 14px 16px;
+  font-family: 'Inter', sans-serif;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+
+  /* Subtle fade-in slide */
+  animation: toast-slide-in 0.3s ease-out;
 }
 
-.applyNow-btn > button:hover::after {
-  transform: translate(0, 0);
+.greenline-toast-body {
+  font-size: 0.95rem;
+  font-weight: 500;
 }
 
-.applyNow-btn > button:hover {
-  color: white;
-  border-radius: 15px;
-  transform: scale(1.05);
-  will-change: transform;
-}
-
-.apply-form{
-  background-color: rgba(255, 255, 255, 0.082);
-}
-
-.apply-control{
-  top: 81vh;
-}
-
-.apply-general[id='files']{
-  translate: -140%;
-}
-
-.how-to{
-  height: 90vh;
-  background-color: rgb(0, 199, 0);
-  border-bottom-left-radius: 40px;
-  border-bottom-right-radius: 40px;
-  box-shadow: 0px 5px 15px;
-}
-
-.contact{
-  top: 180vh;
-  height: 100vh;
-  background-color: rgb(0, 199, 0);
-  border-top-left-radius: 40px;
-  border-top-right-radius: 40px;
-  box-shadow: 0px -5px 15px;
-}
-
-.nav-routsBG{
-  color: rgb(0, 199, 0);
-}
-
-.contact-links{
-  padding-top: 14vh;
-}
-
-.contact-email{
-  border-top-right-radius: 60px;
-}
-
-.calc-results{
-  
-}
-
-@media screen and (max-width: 767px){
-  .contact-links{
-    padding-top: 28vh;
+@keyframes toast-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
   }
-
-  .contact-email{
-    border-top-right-radius: 60px;
-    border-top-left-radius: 60px;
-    padding: 0.5rem;
-  }
-
-  .calc-openBtn{
-    left: 9vw;
-    top: 10vh;
-  }
-
-  .how-to{
-    height: 120vh;
-  }
-
-  .info-background{
-    top: 115vh;
-    height: 130vh;
-  }
-
-  .info{
-    height: 130vh;
-  }
-
-  .contact{
-    top: 240vh;
-  }
-
-  .applyNow-btn{
-    top: 110vh;
-  }
-
-  .apply-control{
-    top: 90vh;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-.calculator-nav{
-  height: 95.3vh;
-  background-image: url(images/clalculator.png);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  backdrop-filter: blur(5px);
+/* Success + Error accents */
+.greenline-toast.success {
+  border-left-color: #1db954 !important; /* brighter green */
 }
 
-.calculator-nav > div{
-  backdrop-filter: blur(4px);
-  background-color: rgba(0, 0, 0, 0.212);
+.greenline-toast.error {
+  border-left-color: #d9534f !important; /* red for errors */
 }

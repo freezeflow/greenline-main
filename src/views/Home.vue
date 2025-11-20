@@ -58,13 +58,13 @@
       :transition="{ duration: 1.0 }"
       class="w-1/2 flex justify-center items-center"
     >
-      <FileCheck class="text-accent absolute -translate-x-16 -translate-y-10 lg:-translate-x-32"/>
+      <FileCheck class="text-accent absolute -translate-x-16 -translate-y-10 lg:-translate-x-32 hover:scale-140 transition-all" id="svg1"/>
 
-      <Stamp class="text-primary absolute -translate-x-28 translate-y-8 lg:-translate-x-40"/>
+      <Stamp class="text-primary absolute -translate-x-28 translate-y-8 lg:-translate-x-40 hover:scale-140 transition-all" id="svg2"/>
 
-      <CheckCircle class="text-primary absolute translate-x-32 translate-y-0 lg:translate-x-48"/>
+      <CheckCircle class="text-primary absolute translate-x-32 translate-y-0 lg:translate-x-48 hover:scale-140 transition-all" id="svg3"/>
       
-      <Banknote class="text-accent absolute translate-x-32 translate-y-20 lg:translate-x-40" />
+      <Banknote class="text-accent absolute translate-x-32 translate-y-20 lg:translate-x-40 hover:scale-140 transition-all" id="svg4"/>
       <img
         src="/hero.png"
         alt="Smiling person getting approved for a quick loan"
@@ -74,3 +74,7 @@
     
   </main>
 </template>
+
+<style scoped>
+  
+</style>
