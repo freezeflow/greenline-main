@@ -1,6 +1,6 @@
 <script setup>
 import { reactive, onMounted, ref } from 'vue'
-import { MapPin, Phone, Mail } from 'lucide-vue-next'
+import { MapPin, Phone, Mail, Loader2 } from 'lucide-vue-next'
 import { useToast } from "vue-toastification/dist/index.mjs";
 import axios from 'axios'
 
@@ -10,6 +10,7 @@ const contactForm = reactive({
   body: ''
 })
 
+const loading = ref(false)
 const uploadProgress = ref()
 const toast = useToast();
 
@@ -19,7 +20,7 @@ async function handleSubmit(e) {
   const formEl = e.target;
 
   if (formEl.checkValidity()) {
-
+    loading.value = true
     try {
       const response = await axios.post(`/api/contact`, contactForm, {
         onUploadProgress: (progressEvent) => {
@@ -30,21 +31,18 @@ async function handleSubmit(e) {
       });
 
       if (response.data.success) {
+        loading.value = false
         toast.success("Message recieved, we will contact you as soon as possible")
 
         contactForm.email = '';
         contactForm.body = '';
       } else {
-        toast.update(loadingToast, {
-          type: "error",
-          render: response.data.error || "Failed to send message.",
-          autoClose: 3000,
-        });
+        loading.value = false
+        toast.error(`${response.data.error || "Failed to send message."}`);
       }
 
     } catch (err) {
-      console.error(err);
-
+      loading.value = false
       toast.error("An error occured, please wait while our team checks it out")
     }
   } else {
@@ -111,9 +109,9 @@ onMounted(() => {
 
       <button
         type="submit"
-        class="bg-primary text-white p-2 w-1/2 rounded cursor-pointer hover:bg-primary/80"
+        class="flex flex-row justify-center items-center gap-1 bg-primary text-white p-2 w-1/2 rounded cursor-pointer hover:bg-primary/80"
       >
-        Send
+        <Loader2 :size="20" :class="loading? 'animate-spin block':'hidden'" /> Send
       </button>
     </form>
 

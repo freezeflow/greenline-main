@@ -285,7 +285,7 @@ onMounted(() => {
       <!-- Submit -->
       <button
         type="submit"
-        class="flex flex-row items-center justify-center text-xl p-2 text-white rounded bg-accent cursor-pointer hover:bg-accent/95 transition-all"
+        class="flex flex-row items-center justify-center gap-2 text-xl p-2 text-white rounded bg-accent cursor-pointer hover:bg-accent/95 transition-all"
         itemprop="potentialAction"
       >
         <Loader2 :class="loading? 'animate-spin block':'hidden'" /> Submit Application

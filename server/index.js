@@ -14,6 +14,7 @@ const isProd = process.env.NODE_ENV === 'production'
 
 async function startServer() {
   const app = express()
+  app.set("trust proxy", 1);
 
   if (!isProd) {
     // Development mode: use Vite with HMR
@@ -56,6 +57,7 @@ async function startServer() {
       }
     })
   } else {
+    app.set("trust proxy", 1);
     // Production mode: serve built assets
     app.use(express.static(path.resolve(__dirname, '../dist/client')))
 

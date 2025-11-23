@@ -1,22 +1,17 @@
-import nodemailer from "nodemailer";
-import { MAIL_PASS, MAIL_USER } from "../config.js";
+import { Resend } from "resend";
+import { RESEND_KEY, MAIL_FROM } from "../config.js";
 
-export const sendMail = async ({ to, subject, html, attachments = [] }) => {
-  const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 465,
-    secure: true,
-    auth: {
-      user: MAIL_USER,
-      pass: MAIL_PASS
-    }
-  });
+const resend = new Resend(RESEND_KEY);
 
-  return transporter.sendMail({
-    from: `"Greenline Financials" <${MAIL_USER}>`,
+export async function sendMail({ to, subject, html, attachments = [] }) {
+  return await resend.emails.send({
+    from: MAIL_FROM,
     to,
     subject,
     html,
-    attachments
+    attachments: attachments.map(file => ({
+      filename: file.originalname,
+      content: file.buffer
+    })),
   });
-};
+}

@@ -35,30 +35,31 @@ applicationRouter.post(
   async (req, res) => {
     try {
       const { fullName, phone, email, amount, term } = req.body;
-      // Basic validation
+
       if (!fullName || !email || !phone || !amount || !term) {
         return res.status(400).json({ error: "Missing required fields" });
       }
 
-      // Prepare attachments
-      const attachments = Object.keys(req.files).map(key => ({
-        filename: req.files[key][0].originalname,
-        content: req.files[key][0].buffer
-      }));
+      const files = [
+        ...(req.files?.idCopy || []),
+        ...(req.files?.bankstatement || []),
+        ...(req.files?.payslip || []),
+      ];
+
+      const html = `
+        <h2>New Loan Application</h2>
+        <p><strong>Name:</strong> ${req.body.fullName}</p>
+        <p><strong>Email:</strong> ${req.body.email}</p>
+        <p><strong>Phone:</strong> ${req.body.phone}</p>
+        <p><strong>Amount:</strong> N$${req.body.amount}</p>
+        <p><strong>Message:</strong> ${req.body.message}</p>
+      `;
 
       await sendMail({
         to: process.env.MAIL_RECEIVE,
-        subject: `New Loan Application - ${fullName}`,
-        html: `
-          <h2>New Loan Application</h2>
-          <p><strong>Name:</strong> ${fullName}</p>
-          <p><strong>Phone:</strong> ${phone}</p>
-          <p><strong>Email:</strong> ${email}</p>
-          <p><strong>Requested Amount:</strong> N$${amount}</p>
-          <p><strong>Payment term:</strong></p>
-          <p>${term} ${term > 1 ? "Months" : "Month"}</p>
-        `,
-        attachments
+        subject: `New Loan Application from ${req.body.fullName}`,
+        html,
+        attachments: files
       });
 
       res.json({ success: true, message: "Application sent successfully" });
@@ -80,16 +81,19 @@ applicationRouter.post(
         return res.status(400).json({ error: "Missing required fields" });
       }
 
+      const html = `
+        <h2>Contact</h2>
+        <p><strong>Email:</strong> ${email}</p>
+        <p>${body}</p>
+      `;
+
       await sendMail({
         to: process.env.MAIL_RECEIVE,
-        subject: `From Greenline.com Contact`,
-        html: `
-          <h2>Contact</h2>
-          <p><strong>Email:</strong> ${email}</p>
-          <p>${body}</p>`
+        subject: `Contact from ${email}`,
+        html
       });
 
-      res.json({ success: true, message: "Application sent successfully" });
+      res.json({ success: true, message: "Message sent successfully" });
 
     } catch (error) {
       console.error("Email error:", error);
